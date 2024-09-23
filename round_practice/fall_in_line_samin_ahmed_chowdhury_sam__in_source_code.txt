@@ -1,0 +1,78 @@
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
+// Function to calculate GCD of two numbers
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+
+
+void solveCase(int caseNum) {
+    int N;
+    cin >> N;
+    
+    vector<pair<int, int>> ants(N);
+    
+
+    for (int i = 0; i < N; i++) {
+        cin >> ants[i].first >> ants[i].second;
+    }
+    
+    int minMove = N - 1; 
+    
+    
+    for (int i = 0; i < N; i++) {
+        map<pair<int, int>, int> slopeCount; 
+        int maxCollinear = 0;
+        
+        
+        for (int j = 0; j < N; j++) {
+            if (i == j) continue;
+            
+            int dx = ants[j].first - ants[i].first;
+            int dy = ants[j].second - ants[i].second;
+            
+            
+            int g = __gcd(dx, dy);
+            dx /= g;
+            dy /= g;
+            
+           
+            if (dx < 0) {
+                dx = -dx;
+                dy = -dy;
+            } else if (dx == 0 && dy < 0) {
+                dy = -dy;
+            }
+            
+            slopeCount[{dx, dy}]++;
+            maxCollinear = max(maxCollinear, slopeCount[{dx, dy}]);
+        }
+        
+        
+        minMove = min(minMove, N - maxCollinear - 1);
+    }
+    
+    
+    cout << "Case #" << caseNum << ": " << minMove << endl;
+}
+
+int main() {
+      #ifndef  ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+   #endif
+    int T;
+    cin >> T;
+    
+    for (int i = 1; i <= T; i++) {
+        solveCase(i);
+    }
+    
+    return 0;
+}

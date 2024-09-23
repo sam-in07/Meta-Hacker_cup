@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+double samin(int N, double P) {
+    double P_1 = 100 * pow((P / 100), ((N - 1) / (double)N));
+    return P_1 - P;
+}
+
+int main() {
+    int T;
+    cin >> T;
+    
+    vector<string> sss;
+
+    for (int t = 1; t <= T; ++t) {
+        int N;
+        double P;
+        cin >> N >> P;
+        
+        double p_to_be_increase = samin(N, P);
+        
+       
+        cout << fixed << setprecision(10); 
+        sss.push_back("Case #" + to_string(t) + ": " + to_string(p_to_be_increase));
+    }
+
+    for (const auto& sr : sss) {
+        cout << sr << endl;
+    }
+
+    return 0;
+}
