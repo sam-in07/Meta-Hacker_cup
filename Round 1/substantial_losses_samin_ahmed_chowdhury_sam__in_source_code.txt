@@ -1,0 +1,160 @@
+#include<bits/stdc++.h>
+using namespace std;
+/*
+time : 11:30
+date : 5/10/2024
+*/
+typedef long long ll;
+const ll mod  = 998244353 ;
+#define ami                ios_base::sync_with_stdio(false);
+#define samin                cin.tie(__null);
+#define bhai                  cout.tie(__null) ;
+#define sv(v)                    v.begin(), v.end()
+#define svr(v)                    v.rbegin(), v.rend()
+#define ma                      map<ll,ll> 
+#define pa                    pair<ll,ll>
+#define sa                  set<ll>
+#define yesss                     cout << "YES\n";
+#define noooo                   cout << "NO\n";
+#define se                    ' '
+#define testcase                ll tt  ;  cin>> tt  ;  while (tt --)
+#define fn(a,b,i)                for (ll i = a; i < b; i++)
+#define ffn(a,b,i)                for (ll i = a; i <=b; i++)
+#define back(a,b,i)                 for(ll i = a ; i>=b ; i-- )
+#define nina_fortner            freopen("input.txt", "r", stdin);  freopen("output.txt", "w", stdout);
+//former ex "wing commmander" 3rd divison BAFA   wing commander  puripuri
+
+bool has_one(const vector<int> &elements) {
+    return find(elements.begin(), elements.end(), 1) != elements.end();
+}
+
+int gcd(int a, int b) {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+}
+
+int find_array_gcd(const vector<int> &elements) {
+    int result = elements[0];
+    for (int i = 1; i < elements.size(); ++i) {
+        result = __gcd(result, elements[i]);
+        if (result == 1)
+            return 1;
+    }
+    return result;
+}
+bool okyy_baby(const vector<int>& arr) {
+    for (int i = 0; i < arr.size() - 1; ++i) {
+        if (arr[i] > arr[i + 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+void  mod_koror(ll &a, ll b) { 
+    a = (a + b) ; 
+ }
+
+
+void her_husband() {
+   ll n , x , y , ans = 0  ;
+   cin >> n >> x >> y ;
+
+    if(x>=y) {
+   ans = (n+y-1) / y ;
+   }
+   else {
+    ans = (n+x-1) / x ;
+   }
+   cout << ans << endl;
+}
+
+bool canCross(int N, long long K, vector<long long>& S) {
+    // Sort the crossing times
+    sort(S.begin(), S.end());
+    
+    long long totalTime = 0;
+    int left = N;
+    
+    while (left > 3) {
+        long long option1 = 2 * S[1] + S[0] + S[left - 1]; // Send two slowest first
+        long long option2 = 2 * S[0] + S[left - 2] + S[left - 1]; // Send two fastest first
+        
+        totalTime += min(option1, option2);
+        left -= 2; // Two travelers have crossed
+    }
+    
+    // Handle the last 3 or fewer travelers
+    if (left == 3) {
+        totalTime += S[2] + S[1] + S[0]; // All three cross
+    } else if (left == 2) {
+        totalTime += S[1]; // Both cross
+    } else if (left == 1) {
+        totalTime += S[0]; // One crosses
+    }
+
+    return totalTime <= K; // Check if total time is within the limit
+}
+
+
+int main() {
+ 
+ ami samin bhai
+ 
+
+    #ifndef  ONLINE_JUDGE
+     nina_fortner
+    #endif 
+    ll T;
+    cin >> T;
+    
+    for (int t = 1; t <= T; ++t) {
+    ll w , g , l , val  , val1 , val2  ,  a , b, c ;
+    cin >> w >> g >> l ;
+   
+
+
+    if(l>0) {
+    a = w-g ;
+    b = l%mod;
+    val1 = a % mod;
+    val2 =( (2*b)+1)%mod;
+    val = (val1 * val2)%mod ;
+    }
+    else {
+        val = (w - g)%mod ;
+    }
+   cout << "Case #" << t << ": ";  
+   cout << val << endl;
+ }
+ 
+ 
+return 0;
+   
+ 
+ 
+ 
+   }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
